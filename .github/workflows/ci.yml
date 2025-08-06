@@ -1,6 +1,7 @@
 name: Continuous Integration
 
 on:
+  # PR과 Push 이벤트에서 실행
   pull_request:
     branches:
       - main
@@ -12,6 +13,7 @@ permissions:
   contents: read
 
 jobs:
+  # Docker 이미지를 빌드하고 Local Repository에 push 후 Docker Container 실행행
   test-docker:
     name: Docker Tests
     runs-on: ubuntu-latest
@@ -54,7 +56,7 @@ jobs:
           docker run \
             --env INPUT_WHO_TO_GREET="${{ env.INPUT_WHO_TO_GREET }}" \
             --rm ${{ env.TEST_TAG }}
-
+  # Github Actions 로컬 액션을 테스트하고 그 결과를 출
   test-action:
     name: GitHub Actions Test
     runs-on: ubuntu-latest
